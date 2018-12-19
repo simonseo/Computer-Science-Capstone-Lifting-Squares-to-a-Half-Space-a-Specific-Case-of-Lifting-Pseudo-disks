@@ -1,27 +1,159 @@
 \documentclass{NSF}
 \usepackage{amssymb}
+\usepackage{amsmath}
 \usepackage{graphicx}
 \graphicspath{ {images/} }
 
+
 \begin{document}
-% B. Project Summary
-\title{Computer Science Capstone: Lifting Squares to a Half-space, a Specific Case of Lifting Pseudo-disks}
-\newsection{Project Progress Report}
-\section{Myunggun Seo}
-\section{Project Summary}
+\author{Myunggun Seo,  Guyu Fan, and Nischal Mainali (Professor: Saurabh Ray)}
+\date{December 15, 2018}
+\title{Computer Science Capstone Progress Report: Lifting Squares to a Half-space, a Specific Case of Lifting Pseudo-disks}
+{\let\newpage\relax\maketitle}
 
-\subsection{Abstract}
+\section{Abstract}
 % Your short version of your proposal goes here
-A \textbf{hypergraph} $H = (V, E)$ consists of the base set $V$, called hypervertices and consisting of vertices and a set $E$, called hyperedges. Hypervertices are the equivalent of a graph's vertex in a hypergraph. The set $E$ is a subset of the powerset of $V \times V$. In other words $E$ contains some subsets of $V$. A \textbf{support} graph or \textbf{support} $S = (V_S, E_S)$ of a hypergraph $H = (V_H, E_H)$ is a graph with the same vertex set as $H$, ie. $V_S = V_H$, in which the subgraph $G_e = (e, E_S \cap e \times e)$ of $H$ induced by each hyperedge $e \in E$ is a connected graph. Our problem is: for a given hypergraph, represented as a set of regions in a simple closed Jordan curve $\mathcal{R} = \{ R_1, ... , R_n \}$, build a planar graph $G$ on $R$ such that for each $p \in \mathbb{R}^2$, the set $\{R \in \mathcal{R} : p \in R\}$ forms a connected subgraph of $G$. 
 
-\subsection{Introduction: General Case of Pseudo-disks}
-The problem that we tackle is a specific case of an unsolved problem in computational geometry: Given a set of pseudo-disks $\{D_i\}$ and points $\{P_j\}$ in $\mathbb{R}^2$ in arbitrary positions, is there a mapping from the pseudo-disks and points to a set of half-spaces $\{H_i\}$ and points $\{Q_j\}$ in $R^3$ such that the membership of point $P_j$ in a pseudo-disk $D_i$ is preserved with point $Q_j$ in $H_i$? If there is, what is the mapping?
+\tableofcontents
 
-\subsection{Appendix: Definitions}
+\section{Introduction}
+\subsection{General Case of Pseudo-disks}
+The problem that we tackle is a specific case of an unsolved problem in computational geometry: 
 
-Pseudo-disks are a set of closed Jordan curves in $\mathbb{R}^2$ in which any pair of pseudo-disks intersect at maximum two places. This property is derived from disks in $\mathbb{R}^2$.
+Given a set of pseudo-disks $\{D_i\}$ and points $\{P_j\}$ in $\mathbb{R}^2$ in arbitrary positions, (1) determine the existence of a mapping from the pseudo-disks and points to a set of half-spaces $\{H_i\}$ and points $\{Q_j\}$ in $\mathbb{R}^3$ such that the membership of point $P_j$ in a pseudo-disk $D_i$ is preserved with point $Q_j$ in $H_i$ (2) describe the mapping. 
 
-A half-space in $\mathbb{R}^3$ is either of the two parts separated by a plane. In general, a half-space is either of the two parts divided by a hyperplane in a $\mathbb{R}^k$.
+Because shapes in $\mathbb{R}^2$ are mapped to a higher dimension $\mathbb{R}^3$, we will call this problem "lifting."
+
+This is one of a class of mapping methods in Combinatorial Geometry which proved useful because such mappings provide another representation and thus new properties of a geometric problem. Such new properties are used often in cases such as finding lower bounds on $\epsilon$-nets or in Kernel Trick in Machine Learning. 
+
+Although there are specific cases of pseudo-disks such as circles (?) (and anything else? ovals? parabolas? all conic sections?) where this mapping exist and described algebraically, it is not known whether there is such a mapping for other seemingly simple cases like rectangles or squares. 
+
+\subsection{Case of Squares of Equal Size}
+Problem statement: Given a set of squares of  $\{S_i\}$ and points $\{P_j\}$ in $\mathbb{R}^2$ in arbitrary positions, is there a mapping from the squares and points to a set of half-spaces $\{H_i\}$ and points $\{Q_j\}$ in $R^3$ such that the membership of point $P_j$ in a square $S_i$ is preserved with point $Q_j$ in $H_i$? If there is, what is the mapping? 
+
+\section{Problems Related to Pseudo-disk Lifting Problem}
+\subsection{Solution: Lifting disks of equal radii to half-spaces}
+There is an algebraic lifting from disks to half-spaces. Point $(\alpha,\beta)$ is lifted to $(\alpha,\beta,\alpha^2+\beta^2-r^2)$, and disk $(x-a)^2+(y-b)^2\leq r^2$ is lifted to $-2ax -2by + z + (a^2+b^2) \leq 0$ by substituting  $x^2+y^2-r^2$ with $z$. 
+\begin{align*}
+(\alpha,\beta) & \mapsto (\alpha,\beta,\alpha^2+\beta^2-r^2) \\
+(x-a)^2+(y-b)^2\leq r^2 & \mapsto -2ax -2by + z + (a^2+b^2) \leq 0
+\end{align*}
+
+The limitation of this method is that it is only possible for disks of equal radii since all points in $\mathbb{R}^2$ can only map to the same point in $\mathbb{R}^3$ which will be defined by the radius $r$.
+
+\subsection{Solution: Lifting disks of varying radii to half-spaces}
+Using a similar approach as the above problem, Point $(\alpha,\beta)$ is lifted to $(\alpha,\beta,\alpha^2+\beta^2)$, and disk $(x-a)^2+(y-b)^2\leq r^2$ is lifted to $-2ax -2by + z + (a^2+b^2-r^2) \leq 0$ by substituting  $x^2+y^2$ with $z$. 
+\begin{align*}
+(\alpha,\beta) & \mapsto (\alpha,\beta,\alpha^2+\beta^2) \\
+(x-a)^2+(y-b)^2\leq r^2 & \mapsto -2ax -2by + z + (a^2+b^2-r^2) \leq 0
+\end{align*}
+
+\subsection{Idea: Straightening pseudo-disks to disks}
+If there is a way to "straighten," or map, a set of general pseudo-disks to disks, then there must be a way to lift any pseudo-disk to a half-space by straightening the pseudo-disks to disks and lifting the produced disks.
+
+\subsection{Similar: Straightening pseudo-lines to lines}
+A similar problem to straightening pseudo-disks to disks is straightening pseudo-lines. Pseudo-lines are a set of curves that intersect one another at most once. This property derives from that of lines. The problem is:  given a set of $n$ pseudo-lines, find a positioning of $n$ lines so that the vertical order of the lines match that of the pseudo-lines. This is not always possible to do. (? counter example)
+
+\subsection{Idea: Lifting pseudo-disks to a polytope}
+We can see a pseudo-disk as an (infinite) intersection and complements of circles of varying radii. Assuming we can lift disks of varying radii to $\mathbb{R}^3$, the geometry lifted to $\mathbb{R}^3$  from a pseudo-disk can be seen as the intersection and complements of each half-space resulting from lifting the subordinate circles. However, the limitation of this method is that it does not produce half-spaces but produces polytopes which may or may not be convex.
+
+
+
+
+\section{Problems Related to Square Lifting Problem}
+
+\subsection{Case of lifting axis-parallel non-piercing rectangles to half-spaces}
+For any pair of axis-parallel non-piercing rectangles, there exist three cases of their positioning:
+\begin{enumerate}
+\item two disjoint rectangles, without any intersections
+\item one rectangle has two corners of the other rectangle inside it
+\item each rectangle has a corner in the inside of each other
+\item (?) one is completely inside the other
+\end{enumerate}
+(?) My notes suggest that this can be done in $O(n\log^2{n})$
+(?) In the following lines it also suggests that rectangles are defined by two inequalities ($a\leq x \leq b$ and $c \leq y \leq d$ which is one more than what defines a half-space so it is impossible?
+
+\subsection{Solution for lifting rectangles that are fixed to the $x$,$y$-axes to a half-space}
+These rectangles are hinged at the origin. For positive $a,b$ values, a rectangle are defined by two inequalities: 
+\begin{equation}\label{origin-hinged-1}
+0 \leq x \leq a,\  0\leq \  y \leq b
+\end{equation}
+Since a half-space is defined by just one inequality, we would like to combine the two inequalities into one: 
+\begin{equation}\label{origin-hinged-2}
+\frac{x}{a} + \frac{y}{b} \leq 2
+\end{equation}
+Now, \eqref{origin-hinged-1} implies \eqref{origin-hinged-2} but \eqref{origin-hinged-2}  may not imply \eqref{origin-hinged-1}. For \eqref{origin-hinged-2} to imply \eqref{origin-hinged-2}, the values of $x$ and $y$ must satisfy the following: if either $\frac{x}{a}$ or $\frac{y}{b}$ is greater than 1, it should be greater than 2. This means that if $\frac{x}{a}+\frac{y}{b}$  is less than 2, both of its terms are less than 1.
+
+We fulfill the requirement by applying "exponential stretching" on the given set of finite points and rectangles in both $x$ and $y$ directions so that $\frac{x}{a} \geq 2$  for points of which the $x$ coordinate lies beyond the line $x=a$ and $\frac{y}{b} \geq 2$ for points of which the y coordinate lies beyond the line $y=b$.  (?need polishing?)
+
+Then, the inequality \eqref{origin-hinged-2} represents a half-space in $\mathbb{R}^3$. This solution provides a minimum bound on the feasibility of lifting squares or rectangles in general.
+
+
+
+\subsection{Solution for lifting rectangles that are fixed to the $x$-axis to a half-space }
+In order to update the minimum bound, consider a set of points and rectangles in $\mathbb{R}^2$, each defined by the constraints
+
+\begin{align*}
+    \text{point:}& \ x \in \mathbb{R},\  z \geq 0 \\
+    \text{rectangle:}& \ x_i \leq x \leq x_j,\ 0 \leq z \leq c
+\end{align*}
+
+We'll call such a rectangle a "building," and the two lines $x=x_i$ and $x=x_j$ "walls."
+We would like to 
+Using ideas from exponential stretching, first sort the $x$ coordinates of all points and all walls together and incrementally assign an integer index to each of them. Stretch out the coordinates of points and walls along the $x$-axis using a steep convex function such as $f(x)=2^x$. 
+(? how steep should it be?)
+The $i$th $x$ coordinate, be it of a point or a wall, will be mapped to a point in $\mathbb{R}^2$
+\begin{equation}
+	x_i \mapsto (i, f(i))
+\end{equation}
+so that if $x_k \in [x_i,x_j]$(ie. the $k$th point is within the walls $x_i,x_j$ of a building), then $l_{ij}(x_k) < 0 $, where $l_{ij}$ for the rectangle with walls  $i$th and $j$th vertical lines is defined as
+
+\begin{equation*}
+    l_{ij}(x_k) = [f(k) - f(i)] -[\frac{f(j)-f(i)}{j-i}(k - i)]
+\end{equation*}
+When $l_{ij}=0$, 
+
+(? why do we need steep functions)
+A building's two constraints are respectively changed to 
+
+\begin{equation}\label{x-axis-hinged-separate}
+    l_{ij}(x) \leq 0, \ \frac{z}{c} \leq 1
+\end{equation}
+
+
+We need to combine these two inequalities into a single inequality that defines a half-space in $\mathbb{R}^3$. 
+The two constraints \eqref{x-axis-hinged-separate} imply the following inequality:
+\begin{equation}\label{x-axis-hinged-added}
+    l_{ij}(x) + \frac{z}{c} \leq 1 
+\end{equation}
+To make the converse true, ????
+\begin{equation}
+	\frac{l_{ij}(x,y)}{\epsilon} + \frac{z}{c} \leq 1
+\end{equation}
+
+
+\subsection{Ideas for mapping squares to disks}
+It is enough to find a mapping from a square to disks that preserves point memberships to show that squares can be lifted to half-spaces. Since lifting disks of varying centers and is possible,  The squares to disks and then lift the disks to half-spaces
+
+\subsection{Ideas for mapping disks to squares}
+
+\subsection{Computational approach using Convex Optimization software}
+
+\section{Acknowledgement}
+
+
+\section{Appendix: Definitions}
+\begin{enumerate}
+\item A geometric shape is \textbf{axis-parallel} if it is parallel or aligned with a coordinate axis.
+\item A \textbf{half-space} in $\mathbb{R}^3$ is either of the two parts separated by a plane. In general, a half-space is either of the two parts divided by a hyperplane in a $\mathbb{R}^k$.
+\item \textbf{Helly's theorem} for the Euclidean plane states that if a family of convex sets has a nonempty intersection for every triple of sets, then the whole family has a nonempty intersection. (Wikipedia)
+\item \textbf{Membership} of a point and a region is a binary flag that signifies whether the point is inside the region or not.
+\item In  $\mathbb{R}^2$, a Jordan curve is \textbf{piercing} another shape if a curve connecting any two points inside the shape must cross the Jordan curve at least twice if the curve lies in the interior of the shape.
+\item \textbf{Pseudo-disks} are a set of closed Jordan curves in $\mathbb{R}^2$ in which any pair of pseudo-disks intersect at maximum two places and do not intersect one another. This property is derived from disks in $\mathbb{R}^2$. (?) Can they be inside one another?
+\item \textbf{Pseudo-lines} are a set of curves that intersect one another at most once. This property derives from that of lines.
+\item 
+
+\end{enumerate}
 
 \subsection{Hypergraphs}
 
@@ -159,21 +291,6 @@ It is also a subproblem of the NP-hard Subset Interconnection Design problem, al
 This research will generally consist of iteration of the following process. Visualize the problem. Find mathematical proofs. Provide experimental evidence via programming. Branch the problem into more easily solvable problems. 
 
 Depending on the nature of a sub-problem, I will also employ software to brute-force solutions or to create visual representations of hypergraphs and their supports in the different methods noted above.
-
-  
-\subsection{Budget}
-% Give a financial budget listing the type and cost of the necessary equipment, materials, supplies, experiments, etc. with justifications for each. NYUAD has allocated a maximum financial support of 2,000 U.S. Dollars for each capstone research project, so your budget should fall within this limit. 
-
-This project is mainly theory-based and thus will require wide writing space for ideation and sharing ideas with my team-mate. 
-
-\begin{itemize}
-\item Whiteboard (90cm$\times$120cm): 1 pcs $\times$ 50 USD $=$ 50 USD 
-\item Markers (4 markers/box) : 12 pcs $\times$ 10 USD $=$ 120 USD 
-\item Whiteboard Eraser : 2 pcs $\times$ 5 USD $=$ 10 USD
-\item Whiteboard Cleaner Fluid : 1 pcs $\times$ 8 USD $=$ 8 USD
-\end{itemize}
-
-This will amount to a total of 188 USD.
 
 
 

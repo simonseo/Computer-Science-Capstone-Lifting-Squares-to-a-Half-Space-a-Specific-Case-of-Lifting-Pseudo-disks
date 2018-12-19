@@ -15,15 +15,20 @@
 \fancyfoot[R]{\thepage} 
 
 \RequirePackage{titlecaps}
+\Addlcwords{for a is but and with of in as the etc on to if}
 \RequirePackage[explicit]{titlesec}
 \titleformat{\section}{\Large\bfseries\filcenter}{}{0pt}{\titlecap{#1}\\\rule{\textwidth}{0.4pt}}
 \titleformat{\subsection}{\large\bfseries}{}{0pt}{\titlecap{#1}}
 \titleformat{\subsubsection}{\bfseries}{}{0pt}{\titlecap{#1}}
-%\titlespacing*{\section}{0pt}{0.5em}{0.3pt}
-%\titlespacing*{\subsection}{0pt}{0.35em}{0pt}
-%\titlespacing*{\subsubsection}{0pt}{0.25em}{0pt}
+% \titlespacing*{\section}{0pt}{0.5em}{0.3pt}
+% \titlespacing*{\subsection}{0pt}{0.35em}{0pt}
+% \titlespacing*{\subsubsection}{0pt}{0.25em}{0pt}
 
-\renewcommand{\title}[1]{\begin{center}\LARGE\bfseries{#1}\end{center}}
+\renewcommand{\title}[1]{
+\begin{center}
+\LARGE\bfseries{#1}
+\end{center}
+}
 
 % Reset page numbering to 1.  This is helpful, since the text can only
 % be 15 pages (unless otherwise specified, see individual solicitations), 
