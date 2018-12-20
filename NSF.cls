@@ -6,7 +6,7 @@
 \RequirePackage[pdftex,colorlinks,linkcolor=black,citecolor=black,urlcolor=black,filecolor=black]{hyperref}
 
 \RequirePackage[pdftex]{graphicx}
-\DeclareGraphicsExtensions{.eps,.pdf,.jpeg,.png}
+\DeclareGraphicsExtensions{.eps,.pdf,.jpeg,.png,.jpg}
 
 \RequirePackage{fancyhdr}
 \pagestyle{fancyplain}
