@@ -17,7 +17,7 @@
 
 \section{Abstract}
 % Your short version of your proposal goes here
-A half-space in $\mathbb{R}^3$ is either of the two parts separated by a plane. Because of some helpful properties that exist in half-spaces, it is often useful to map geometries in a plane to half-spaces in  $\mathbb{R}^3$. In this project, we attempt to prove or disprove the existence of a mapping from a family of squares in a plane to a family of half-spaces in $\mathbb{R}^3$ such that all points inside each square are mapped to points inside the corresponding half-space and all points outside each square are mapped to points outside the corresponding half-space. If such a mapping can be shown to exist, we attempt to provide a mathematical description of it or find an algorithm that performs the mapping.
+A half-space in $\mathbb{R}^3$ is either of the two parts separated by a plane. Because of some helpful properties that exist in half-spaces, it is often useful to map geometries in a plane to half-spaces in  $\mathbb{R}^3$. In this project, we attempt to prove or disprove the existence of a mapping from a family of squares in a plane to a family of half-spaces in $\mathbb{R}^3$ such that all points inside each square are mapped to points inside the corresponding half-space and all points outside each square are mapped to points outside the corresponding half-space. If such a mapping can be shown to exist, we attempt to provide a mathematical description of it or find an algorithm that performs the mapping. \cite{mainali2018}
 \tableofcontents
 
 \section{Introduction}
@@ -88,11 +88,10 @@ For any pair of axis-parallel non-piercing rectangles, there exist three cases o
 \begin{enumerate}
 \item two disjoint rectangles, without any intersections
 \item one rectangle has two corners of the other rectangle inside it
-\item each rectangle has a corner in the inside of each other
+\item each rectangle has a corner in the interior of each other
 \item (?) one is completely inside the other
 \end{enumerate}
-(?) My notes suggest that this can be done in $O(n\log^2{n})$
-(?) In the following lines it also suggests that rectangles are defined by two inequalities ($a\leq x \leq b$ and $c \leq y \leq d$ which is one more than what defines a half-space so it is impossible?
+Rectangles are defined by two inequalities ($a\leq x \leq b$ and $c \leq y \leq d$ which is one more than what defines a half-space so it is impossible?
 
 \subsection{Solution for lifting rectangles that are fixed to the $x$,$y$-axes}
 These rectangles are hinged at the origin. For positive $a,b$ values, a rectangle are defined by two inequalities: 
@@ -103,9 +102,9 @@ Since a half-space is defined by just one inequality, we would like to combine t
 \begin{equation}\label{origin-hinged-2}
 \frac{x}{a} + \frac{y}{b} \leq 2
 \end{equation}
-Now, \eqref{origin-hinged-1} implies \eqref{origin-hinged-2} but \eqref{origin-hinged-2}  may not imply \eqref{origin-hinged-1}. For \eqref{origin-hinged-2} to imply \eqref{origin-hinged-2}, the values of $x$ and $y$ must satisfy the following: if either $\frac{x}{a}$ or $\frac{y}{b}$ is greater than 1, it should be greater than 2. This means that if $\frac{x}{a}+\frac{y}{b}$  is less than 2, both of its terms are less than 1.
+Now, \eqref{origin-hinged-1} implies \eqref{origin-hinged-2} but \eqref{origin-hinged-2}  may not imply \eqref{origin-hinged-1}. For \eqref{origin-hinged-2} to imply \eqref{origin-hinged-1}, the values of $x$ and $y$ must satisfy the following: if either $\frac{x}{a}$ or $\frac{y}{b}$ is greater than 1, it should be greater than 2. This means that if $\frac{x}{a}+\frac{y}{b}$  is less than 2, both of its terms are less than 1.
 
-We fulfill the requirement by applying "exponential stretching" on the given set of finite points and rectangles in both $x$ and $y$ directions so that $\frac{x}{a} \geq 2$  for points of which the $x$ coordinate lies beyond the line $x=a$ and $\frac{y}{b} \geq 2$ for points of which the y coordinate lies beyond the line $y=b$.  (?need polishing?)
+We fulfill the requirement by applying "exponential stretching" on the given set of finite points and rectangles in both $x$ and $y$ directions so that $\frac{x}{a} \geq 2$  for points of which the $x$ coordinate lies beyond the line $x=a$ and $\frac{y}{b} \geq 2$ for points of which the y coordinate lies beyond the line $y=b$. 
 
 Then, the inequality \eqref{origin-hinged-2} represents a half-space in $\mathbb{R}^3$. This solution provides a minimum bound on the feasibility of lifting squares or rectangles in general.
 
@@ -120,7 +119,7 @@ In order to update the minimum bound, consider a finite set of points and rectan
     \text{rectangle:}& \ x_i \leq x \leq x_j,\ 0 \leq z \leq c
 \end{align*}
 
-We refer to such a rectangle as a "building," and the two lines $x=x_i$ and $x=x_j$ "walls."
+We refer to such rectangles as "buildings," and the two lines $x=x_i$ and $x=x_j$ "walls."
 We would like to combine the three constraints of the rectangle as a single inequality representing a half-space in $\mathbb{R}^3$.
 Using ideas from exponential stretching, first sort the $x$ coordinates of all points and all walls together and incrementally assign an integer index to each of them. Stretch out the coordinates of points and walls along the $x$-axis using a steep convex function such as $f(x)=2^x$. 
 (? how steep should it be? so that lij(xk) > delta if xk not in building? this would be to force lij to exceed 0 by a lot if it exceeds at all)
@@ -135,7 +134,7 @@ so that if $x_k \in [x_i,x_j]$(ie. the $k$th point is within the walls $x_i,x_j$
 \end{equation*}
 
 
-(? why do we need steep functions)
+We need steep functions because we want to maximize $l_{ij}$ when $x_k$ is not between $x_i$ and $x_j$.
 A building's two constraints are respectively changed to 
 
 \begin{equation}\label{x-axis-hinged-separate}
@@ -148,12 +147,12 @@ The two constraints in \eqref{x-axis-hinged-separate} imply the following inequa
 \begin{equation}\label{x-axis-hinged-added}
     l_{ij}(x) + \frac{z}{c} \leq 1 
 \end{equation}
-To make the converse true, ???? where did the epsilon come from
+To make the converse true, we must have that if $l_{ij}(x)$ exceeds 0, it exceeds 1. $\epsilon$ is the smallest magnitude that $l_{ij}$ can have for the given set of points when $x$ is outside $x_i$ and $x_j$ so that the first term becomes greater than 1 if it's violated. $\delta$ is the greatest magnitude of all $l_{ij}$'s for when $x$ is outside $x_i$ and $x_j$. Then we should exponentially stretch in $z$ direction as well so that when the first term is negative but $\frac{z}{c}$ is greater than 1, it compensates for the negative term. The stretching in $z$ direction should satisfy $\frac{z}{c} \geq 1+\frac{\delta}{\epsilon}$.
 \begin{equation}
 	\frac{l_{ij}(x,y)}{\epsilon} + \frac{z}{c} \leq 1
 \end{equation}
 \paragraph{Approach 2}
-Another approach to lift a set of buildings is by fitting circles on them. Stretch the buildings horizontally so that the ratio between the maximum height of the buildings and the maximum width of the buildings is minimal. For each of the buildings, fit an arc around it. This is possible and conserves point memberships (? better explanation ?) The arcs are part of a larger disk and we achieve our goal by lifting those disks.
+Another approach to lift a set of buildings is by fitting circles on them. Stretch the buildings horizontally so that the ratio between the maximum height of the buildings and the maximum width of the buildings is minimal. For each of the buildings, fit an arc around it. This is possible and conserves point memberships. The arcs are part of a larger disk and we achieve our goal by lifting those disks.
 
 \section{Mapping squares to disks}
 It would be enough to find a mapping from a square to disks that preserves point memberships to show that squares can be lifted to half-spaces. Since lifting disks of varying centers and is possible, squares can be lifted via mapping squares to disks and then lifting the disks to half-spaces.
@@ -188,7 +187,9 @@ Since $3n-6 > 2n$ for all $n > 6$, a family of 7 or more disks has regions repre
 This proof is incomplete because it is not certain that $2n$ is the optimal number of $depth=2$ regions for the maximum number of $n$ squares.
 
 \paragraph{Approach 2} Guyu's bump argument
+Consider a depth=3 region created by intersections of squares. The region is rectangular in shape. At least two of its four neighbours (up, down, left, right) must have depth=2. (?why?)
 
+\paragraph{Approach 3} Multiple ($n\geq3$) circles sharing one intersection point.
 
 
 \section{Reducing counterexamples of unrepresentable half-spaces}
