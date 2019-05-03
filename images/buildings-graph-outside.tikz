@@ -1,0 +1,47 @@
+% \documentclass[10pt]{article}
+% \usepackage{pgf,tikz,pgfplots}
+% \pgfplotsset{compat=1.15}
+% \usepackage{mathrsfs}
+% \usetikzlibrary{arrows}
+% \pagestyle{empty}
+ 
+%<<<<<<<WARNING>>>>>>>
+% PGF/Tikz doesn't support the following mathematical functions:
+% cosh, acosh, sinh, asinh, tanh, atanh,
+% x^r with r not integer
+
+% Plotting will be done using GNUPLOT
+% GNUPLOT must be installed and you must allow Latex to call external
+% programs by adding the following option to your compiler
+% shell-escape    OR    enable-write18 
+% Example: pdflatex --shell-escape file.tex 
+
+% \begin{document}
+\definecolor{qqqqff}{rgb}{0,0,1}
+\definecolor{ffvvqq}{rgb}{1,0.3333333333333333,0}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{fuqqzz}{rgb}{0.9568627450980393,0,0.6}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(0.5449523263706553,0.651774338994011) rectangle (11.855846680364278,7.509211758310395);
+\draw[line width=2.4pt,smooth,samples=100,domain=0.5449523263706553:11.855846680364278] plot(\x,{2^((\x)-5)+1});
+\draw [line width=1.2pt,color=fuqqzz,domain=0.5449523263706553:11.855846680364278] plot(\x,{(-6.992525241243751--2.372234477578533*\x)/2.1398071082329313});
+\draw [line width=0.8pt,dash pattern=on 1pt off 1pt,domain=0.5449523263706553:11.855846680364278] plot(\x,{(--1.69627612511447-0*\x)/1});
+\draw [line width=0.8pt,dash pattern=on 1pt off 1pt] (7.588034257990977,0.651774338994011) -- (7.588034257990977,7.509211758310395);
+\draw [line width=0.8pt,dash pattern=on 1pt off 1pt] (6.617538568460331,0.651774338994011) -- (6.617538568460331,7.509211758310395);
+\draw [shift={(1.0191143636729283,3.420349174543874)},line width=1.6pt,color=ffvvqq]  plot[domain=-0.25667010167218063:0.2566701016721806,variable=\t]({1*6.791401656339894*cos(\t r)+0*6.791401656339894*sin(\t r)},{0*6.791401656339894*cos(\t r)+1*6.791401656339894*sin(\t r)});
+\draw [shift={(3.893808921447139,4.35453240716936)},line width=1.6pt,color=qqqqff]  plot[domain=-0.6237402583656637:0.6237402583656637,variable=\t]({1*4.5512226157645514*cos(\t r)+0*4.5512226157645514*sin(\t r)},{0*4.5512226157645514*cos(\t r)+1*4.5512226157645514*sin(\t r)});
+\begin{scriptsize}
+\draw[color=black] (1.364742906385864,0.8124089796726662) node {$f(x)={2}^{x}$};
+\draw [fill=black] (4.4777314602274,1.69627612511447) circle (2.5pt);
+\draw[color=black] (4.987331009966583,1.4771040445498602) node {$(i,f(i))$};
+\draw [fill=black] (6.617538568460331,4.068510602693003) circle (2.5pt);
+\draw[color=black] (7.214059477305192,4.069414797570917) node {$(j,f(j))$};
+\draw [fill=black] (7.588034257990977,7.01278868922425) circle (2.5pt);
+\draw[color=black] (8.26649333002742,7.127012096006008) node {$(k,f(k))$};
+\draw [fill=uuuuuu] (7.588034257990977,5.144422223973278) circle (2pt);
+\draw [fill=uuuuuu] (7.588034257990977,1.69627612511447) circle (2pt);
+\draw[color=ffvvqq] (9.43344897067188,2.9394331872796866) node {$\frac{f(j)-f(i)}{j-i}(k-i)$};
+\draw[color=qqqqff] (9.418631442481225,4.313136321359221) node {$f(k)-f(i)$};
+\end{scriptsize}
+\end{tikzpicture}
+% \end{document}
