@@ -1,0 +1,44 @@
+% https://www.geogebra.org/geometry/byr65bsv
+% \documentclass[10pt]{article}
+% \usepackage{pgf,tikz,pgfplots}
+% \pgfplotsset{compat=1.15}
+% \usepackage{mathrsfs}
+% \usetikzlibrary{arrows}
+% \pagestyle{empty}
+% \begin{document}
+\definecolor{wvvxds}{rgb}{0.396078431372549,0.3411764705882353,0.8235294117647058}
+\definecolor{ffffww}{rgb}{1,1,0.4}
+\definecolor{wrwrwr}{rgb}{0.3803921568627451,0.3803921568627451,0.3803921568627451}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-1.6032027050648963,-0.22479249710727225) rectangle (8.600630495472494,7.2240057392849835);
+\fill[line width=0pt,dotted,color=ffffww,fill=ffffww,fill opacity=0.4] (3,4) -- (4,4) -- (4,3) -- (3,3) -- cycle;
+\fill[line width=0pt,dotted,color=wvvxds,fill=wvvxds,fill opacity=0.2] (4,3) -- (4,4) -- (5,4) -- (5,2) -- (3,2) -- (3,3) -- cycle;
+\fill[line width=0pt,dotted,color=wvvxds,fill=wvvxds,fill opacity=0.2] (4,5) -- (3,5) -- (3,4) -- (4,4) -- cycle;
+\fill[line width=0pt,dotted,color=wvvxds,fill=wvvxds,fill opacity=0.2] (3,4) -- (2,4) -- (2,3) -- (3,3) -- cycle;
+\fill[line width=0pt,dotted,fill=black,fill opacity=0.1] (3,5) -- (2,5) -- (2,4) -- (3,4) -- cycle;
+\fill[line width=0pt,dotted,fill=black,fill opacity=0.1] (5,5) -- (4,5) -- (4,4) -- (5,4) -- cycle;
+\fill[line width=0pt,dotted,fill=black,fill opacity=0.1] (3,3) -- (2,3) -- (2,2) -- (3,2) -- cycle;
+\draw [line width=2pt,color=wrwrwr] (1,0)-- (1,7);
+\draw [line width=2pt,color=wrwrwr] (2,7)-- (2,0);
+\draw [line width=2pt,color=wrwrwr] (3,7)-- (3,0);
+\draw [line width=2pt,color=wrwrwr] (4,7)-- (4,0);
+\draw [line width=2pt,color=wrwrwr] (5,7)-- (5,0);
+\draw [line width=2pt,color=wrwrwr] (6,7)-- (6,0);
+\draw [line width=2pt,color=wrwrwr] (0,1)-- (7,1);
+\draw [line width=2pt,color=wrwrwr] (7,2)-- (0,2);
+\draw [line width=2pt,color=wrwrwr] (0,3)-- (7,3);
+\draw [line width=2pt,color=wrwrwr] (7,4)-- (0,4);
+\draw [line width=2pt,color=wrwrwr] (0,5)-- (7,5);
+\draw [line width=2pt,color=wrwrwr] (7,6)-- (0,6);
+\begin{scriptsize}
+\draw [color=black] (2.5,4.5)-- ++(-3.5pt,0 pt) -- ++(7pt,0 pt) ++(-3.5pt,-3.5pt) -- ++(0 pt,7pt);
+\draw [color=black] (1.5,5.5)-- ++(-3.5pt,0 pt) -- ++(7pt,0 pt) ++(-3.5pt,-3.5pt) -- ++(0 pt,7pt);
+\draw [color=black] (0.5,6.5)-- ++(-3.5pt,0 pt) -- ++(7pt,0 pt) ++(-3.5pt,-3.5pt) -- ++(0 pt,7pt);
+\draw [color=black] (1.5,6.5)-- ++(-3.5pt,0 pt) -- ++(7pt,0 pt) ++(-3.5pt,-3.5pt) -- ++(0 pt,7pt);
+\draw [color=black] (2.5,6.5)-- ++(-3.5pt,0 pt) -- ++(7pt,0 pt) ++(-3.5pt,-3.5pt) -- ++(0 pt,7pt);
+\draw [color=black] (2.5,5.5)-- ++(-3.5pt,0 pt) -- ++(7pt,0 pt) ++(-3.5pt,-3.5pt) -- ++(0 pt,7pt);
+\draw [color=black] (3.5,5.5)-- ++(-3.5pt,0 pt) -- ++(7pt,0 pt) ++(-3.5pt,-3.5pt) -- ++(0 pt,7pt);
+\draw [color=black] (3.5,6.5)-- ++(-3.5pt,0 pt) -- ++(7pt,0 pt) ++(-3.5pt,-3.5pt) -- ++(0 pt,7pt);
+\end{scriptsize}
+\end{tikzpicture}
+% \end{document}

@@ -1,0 +1,16 @@
+% https://www.geogebra.org/geometry/bsvcjgvv
+% \documentclass[10pt]{article}
+% \usepackage{pgf,tikz,pgfplots}
+% \pgfplotsset{compat=1.15}
+% \usepackage{mathrsfs}
+% \usetikzlibrary{arrows}
+% \pagestyle{empty}
+% \begin{document}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-12.93945205479452,-7.8174) rectangle (6.779452054794521,6.5774);
+\draw [line width=2pt] (-3.38,3.17) circle (3cm);
+\draw [line width=2pt] (-0.82,-0.45) circle (3cm);
+\draw [line width=2pt] (-5.34,-0.63) circle (3cm);
+\draw [line width=2pt] (-3.12,-4.41) circle (3cm);
+\end{tikzpicture}
+% \end{document}

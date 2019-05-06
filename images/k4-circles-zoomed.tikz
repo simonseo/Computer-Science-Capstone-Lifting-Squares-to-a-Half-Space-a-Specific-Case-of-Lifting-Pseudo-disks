@@ -1,0 +1,16 @@
+% \documentclass[10pt]{article}
+% \usepackage{pgf,tikz,pgfplots}
+% \pgfplotsset{compat=1.15}
+% \usepackage{mathrsfs}
+% \usetikzlibrary{arrows}
+% \pagestyle{empty}
+% \begin{document}
+\definecolor{wvvxds}{rgb}{0.396078431372549,0.3411764705882353,0.8235294117647058}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-2.9035733764526235,-2.21342191240641) rectangle (2.0160191218567514,1.8097115084332467);
+\draw [line width=1.2pt,color=wvvxds,fill=wvvxds,fill opacity=0.05] (-0.5,2.75) circle (2.3048861143232218cm);
+\draw [line width=1.2pt,color=wvvxds,fill=wvvxds,fill opacity=0.1] (1.730714128928904,-1.1539288066066435) circle (2.2745004818962444cm);
+\draw [line width=1.2pt,color=wvvxds,fill=wvvxds,fill opacity=0.05] (-2.7307141289289047,-1.1539288066066429) circle (2.2745004818962435cm);
+\draw [line width=1.2pt,color=wvvxds,fill=wvvxds,fill opacity=0.1] (-0.4715400242958238,0.1517139457754751) circle (0.5289435928606525cm);
+\end{tikzpicture}
+% \end{document}

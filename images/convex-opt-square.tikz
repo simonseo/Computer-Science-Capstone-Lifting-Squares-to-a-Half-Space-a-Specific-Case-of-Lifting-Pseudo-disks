@@ -1,0 +1,33 @@
+% https://www.geogebra.org/geometry/zrqajbj5
+% \documentclass[10pt]{article}
+% \usepackage{pgf,tikz,pgfplots}
+% \pgfplotsset{compat=1.15}
+% \usepackage{mathrsfs}
+% \usetikzlibrary{arrows}
+% \pagestyle{empty}
+% \begin{document}
+\definecolor{rvwvcq}{rgb}{0.08235294117647059,0.396078431372549,0.7529411764705882}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-8.322739726027397,-4.2506) rectangle (3.3227397260273963,4.2506);
+\fill[line width=2pt,color=rvwvcq,fill=rvwvcq,fill opacity=0.10000000149011612] (-4,4) -- (-1,4) -- (-1,1) -- (-4,1) -- cycle;
+\fill[line width=2pt,color=rvwvcq,fill=rvwvcq,fill opacity=0.10000000149011612] (-6,2) -- (-2,2) -- (-2,-2) -- (-6,-2) -- cycle;
+\fill[line width=2pt,color=rvwvcq,fill=rvwvcq,fill opacity=0.10000000149011612] (1,3) -- (-3,3) -- (-3,-1) -- (1,-1) -- cycle;
+\fill[line width=2pt,color=rvwvcq,fill=rvwvcq,fill opacity=0.10000000149011612] (-4,0) -- (0,0) -- (0,-4) -- (-4,-4) -- cycle;
+\draw [line width=2pt,color=rvwvcq] (-4,4)-- (-1,4);
+\draw [line width=2pt,color=rvwvcq] (-1,4)-- (-1,1);
+\draw [line width=2pt,color=rvwvcq] (-1,1)-- (-4,1);
+\draw [line width=2pt,color=rvwvcq] (-4,1)-- (-4,4);
+\draw [line width=2pt,color=rvwvcq] (-6,2)-- (-2,2);
+\draw [line width=2pt,color=rvwvcq] (-2,2)-- (-2,-2);
+\draw [line width=2pt,color=rvwvcq] (-2,-2)-- (-6,-2);
+\draw [line width=2pt,color=rvwvcq] (-6,-2)-- (-6,2);
+\draw [line width=2pt,color=rvwvcq] (1,3)-- (-3,3);
+\draw [line width=2pt,color=rvwvcq] (-3,3)-- (-3,-1);
+\draw [line width=2pt,color=rvwvcq] (-3,-1)-- (1,-1);
+\draw [line width=2pt,color=rvwvcq] (1,-1)-- (1,3);
+\draw [line width=2pt,color=rvwvcq] (-4,0)-- (0,0);
+\draw [line width=2pt,color=rvwvcq] (0,0)-- (0,-4);
+\draw [line width=2pt,color=rvwvcq] (0,-4)-- (-4,-4);
+\draw [line width=2pt,color=rvwvcq] (-4,-4)-- (-4,0);
+\end{tikzpicture}
+% \end{document}
