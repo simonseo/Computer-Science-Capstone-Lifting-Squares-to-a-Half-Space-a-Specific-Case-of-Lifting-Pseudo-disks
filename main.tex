@@ -74,6 +74,7 @@ There is an algebraic lifting from disks to half-spaces. Point $(\alpha,\beta)$ 
 The limitation of this method is that it is only possible for disks of equal radii since all points in $\mathbb{R}^2$ can only map to the same point in $\mathbb{R}^3$ which will be defined by the radius $r$.
 
 \subsection{Solution: Lifting disks of varying radii}
+\label{section:disk-lifting}
 Using a similar approach as the above, Point $(\alpha,\beta)$ is lifted to $(\alpha,\beta,\alpha^2+\beta^2)$, and disk $(x-a)^2+(y-b)^2\leq r^2$ is lifted to $-2ax -2by + z + (a^2+b^2-r^2) \leq 0$ by substituting  $x^2+y^2$ with $z$. 
 \begin{align*}
 (\alpha,\beta) & \mapsto (\alpha,\beta,\alpha^2+\beta^2) \\
@@ -519,7 +520,7 @@ Matrix M of demands is
 Number of variables: 2*(n+m)
 Number of constraints: n*m
 
-If using gradient descent:
+If using gradient descent: $L = \sigma(d(a,b)-1)$ if section a in circle b else $\sigma(1-d(a,b))$ using sigmoid function
 
 
 \subsection{Justification}
@@ -540,25 +541,35 @@ We do not see a clear implication of lifting a path $P_3$ of $length=3$ regardin
 
 
 \subsection{Lifting vertices, edges, and faces}
-Steinitz's theorem: Every 3-connected planar graph can be realized as a convex polyhedron.
-~Stereographic projection
-A simple demonstration of this theorem can be done by stereographic projections.
 
-		a. If not 3-connected, make it so
-		b. Use steinitz's theorem to lift to 3D convex polytope Stereographic projection
-		c. Statement of steinitz's theorem
-Each node (l=1) or edge (l=2) is separable by tangent plane
+We show that it is possible to lift vertices, edges, and triangular faces in any position in a planar graph with the help of Steinitz's Theorem stated below. 
+
+\begin{theorem}[Steinitz's Theorem \cite{weisstein}]
+Every 3-connected planar graph can be realized as a convex polyhedron. 
+\end{theorem}
+
+Take any planar graph of size $n \geq 4$ and triangulate it so that it becomes the maximal planar graph. The maximal planar graph is at least 3-connected so Steinitz's Theorem is applied to it, lifting the graph to a 3D polyhedron. Note that the original vertices, edges, and triangular faces are conserved in the polyhedron. Take the half-space defined by a point and the normal vector on each object. Translate it in the opposite direction of the vector by a small distance $\epsilon$. The resulting half-space separates the given object from the rest of the graph.
 
 \subsection{Lifting paths of \texorpdfstring{$length=3$}{length=3}}
-proof that intersecting triples are impossible / explanation that they are hard to do
-			iii. Proof that intersecting triples cannot be lifted (?) 
-			iv. Drawing of "interactions of two triples"
+In order to make a more general statement about triangular faces, we consider any set of $length=3$ paths, \textit{i.e.} triples, that is in a planar graph. It is not clear how to generalize lifting triangular faces into $length=3$ paths using the polyhedron transformation described above. For simplicity at this stage, we disregard sets in which a pair of triples cross each other through the middle vertex.
 
-demonstrate binary tree, star graph
-proof it works (they don't intersect)
+\paragraph{Redrawing of graph} One graph that never has any crossing triples is a binary tree. A binary tree can be redrawn according to the following recursive construction in order to lift any number of paths in the graph.
+\begin{enumerate}
+\item Start from the root node and base length 1 as distance to its children.
+\item If the current node has a parent, take a fraction $r\leq 1$, say half, of the distance between the parent and the current node as its distance to its children nodes.
+\item Depending on the value of $r$, take $\theta$, say $\frac{\pi}{2}$, as the angle between the edges to the current node's two children.
+\end{enumerate}
 
-proof by construction of star
-\begin{figure}
+\paragraph{Lifting} The following is the lifting step.
+\begin{enumerate}
+\item There exists a unique circle $C_i$ passing through the parent and two children of each node $v_i$.
+\item Every triple as well as an extra node is inside the circle defined by the middle node.
+\item To exclude the extra node, define a new disk by maintaining the two leaves of the triple on the boundary of the disk but translating the center towards the midpoint of the two leaf nodes by a small $\epsilon$.
+\item Repeat this for all given triples.
+\item Using the mapping described in section~\ref{section:disk-lifting}, each triple but no other node is lifted to a half-space.
+\end{enumerate}
+
+\begin{figure}[ht]
 \centering
 
 \includegraphics[width=0.5\textwidth]{images/binary-tree-with-circles}
@@ -566,6 +577,25 @@ proof by construction of star
 \end{figure}
 
 
+We require the distance to decrease exponentially so that we can generalize binary trees of arbitrary heights. The angle $\theta$ needs to be small in order to prevent the two descendant branches from curving back into the circle in which the parent node exists as well as into each other.
+
+\begin{theorem}
+In a drawing of a binary tree with $r=\frac{1}{2}$, $\theta=\frac{\pi}{2}$, the subtrees with the two children nodes of node $v_i$ as roots do not intersect the unique circle $C_i$ passing through the parent and two children of $v_i$.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+\begin{theorem}
+In a drawing of a binary tree with $r=\frac{1}{2}$, $\theta=\frac{\pi}{2}$, the subtrees with the two children nodes of node $v_i$ as roots do not intersect each other.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+generalize for k-ary tree
+
+proof by construction of star
 corollary: star
 
 \newpage
