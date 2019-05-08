@@ -113,13 +113,13 @@ For any pair of axis-parallel non-piercing rectangles, there exist three cases o
 \item each rectangle has a corner of the other in its interior.
 \item one rectangle is completely inside the other
 \end{enumerate}
-Rectangles are defined by two inequalities ($a\leq x \leq b$ and $c \leq y \leq d$ and thus has degree of freedom 4.
+Rectangles are defined by two inequalities ($a\leq x \leq b$ and $c \leq y \leq d$ and thus has degree of freedom 4.)
 
 \begin{figure}[ht]
-\subfloat[rectangles hinged at the origin]{\includegraphics[width = 3in]{origin-hinged-example}}
+\subfloat[Rectangles hinged at the origin]{\includegraphics[width = 3in]{origin-hinged-example}}
 \hspace{.3in}
-\subfloat[``buildings'' fixed to the $x$-axis]{\includegraphics[width = 3in]{buildings-example}} 
-\caption{}
+\subfloat[``Buildings'' fixed to the $x$-axis]{\includegraphics[width = 3in]{buildings-example}} 
+\caption{Special cases of rectangles}
 \label{fig:origin-building-example}
 \end{figure}
 
@@ -224,20 +224,36 @@ First, we try to find which intersection patterns are impossible to create with 
 Considering squares of various radii, positions, and tilt, it is easy to show that it is impossible to map squares in general to disks while preserving point memberships. For instance, take two co-centric squares of equal size but at a 45 degree angle of each other as described in figure~\ref{fig:cocentric-squares}. This configuration produces a total of 8 intersections and 10 regions. No pair of circles in a plane can produce 10 regions and thus general squares cannot be mapped to disks. Thus we will only consider axis-parallel squares for simplicity and assume that two regions are equivalent if they are part of the same combinations of objects.
 
 \subsection{Idea: maintaining center, choose arbitrary radius}
-Counterexample drawing
+We conjectured that we can map axis-parallel squares to disks by maintaining the center of the squares but choosing an arbitrary radius.
+We previously provided an incorrect counterexample involving a few squares intersecting with at most one other square. This incorrect counterexample is described below for completeness.
+
+\begin{theorem}
+It is impossible to map axis-parallel squares to disks by method of maintaining the center but choosing an arbitrary radius, while maintaining all intersection regions.
+\end{theorem}
+\begin{proof}
+Construct two equal-sized squares $S_1$, $S_2$ that are parallel to each other but is spaced by a very short length $l$. Place two small squares $S_3$, $S_4$ of size $2l$ intersecting both $S_1$ and $S_2$ -- $S_3$ at the center and $S_4$ at the corners. The circles of $S_1$ and $S_2$ must intersect $S_4$ but then the circles become large enough to cover the entire $S_3$ region. This is a problem since we need to maintain the $d=1$ region of $S_3$.
+\begin{figure}
+\centering
+\includegraphics[width=.3\textwidth]{images/counterexample-same-center}
+\caption{}
+\end{figure}
+\end{proof}
+
+This counterexample is incorrect because it did not account for the fact that the size of the circles corresponding to $S_3$ and $S_4$ can also change. Also, our later sections show that any intersections with maximum $d=2$ regions can be represented using circles using Thurston's coin-graph theorem (Theorem \ref{thm:thurston}). 
 
 \subsection{Configuration of all \texorpdfstring{$k$}{k}-depth intersections of disks for \texorpdfstring{$k=0,1,2$}{k=0,1,2}}
 In an effort to explore the possibility of mapping squares to disks, we check the limits of the expressiveness of disk intersection regions. It is impossible to lay out $n$ circles to include all combinatorially possible regions of $depth=2$ for $n \geq 5$. This can be demonstrated by constructing a graph with vertices representing each disk and an edge connecting two vertices if the corresponding disks share a common $depth=2$ region and each have a $depth= 1$ region of their own. We name this graph \textbf{2-intersection graph}. Creating all combinatorially possible disk intersections of $depth=0,1,2$ means each vertex in the graph is connected to all other vertices -- in other words it is a complete graph. For $n \geq 5$ it is impossible to draw a planar complete graph. Thus if we can find a family of five squares with all combinatorially possible regions of $depth=0,1,2$, we can show that it is impossible to map squares to disks.
 
 It is important to note, however, that there is also a limit to the number of $depth=2$ regions that can be created by axis-parallel rectangles, as we show below. Thus this approach is inconclusive.
 
-\subsection{Set of points in maximum \texorpdfstring{$depth=2$}{depth=2} }
+\subsection{Set of points limited to regions of maximum \texorpdfstring{$depth=2$}{depth=2} }
 \label{section:thurston}
-\begin{theorem}[Thurston’s coin-graph theorem]
+\begin{theorem}[Thurston\text{'}s coin-graph theorem]
 Every planar graph G can be represented by a set of non-overlapping circles in the plane, one circle for each vertex, so that two vertices are adjacent in G if and only if the corresponding circles are tangent. \cite{Brightwell:doi:10.1137/0406017}
+\label{thm:thurston}
 \end{theorem}
  
-If no three squares have a common intersection or there are no points in regions of depth greater than 2, we can map squares to a 2-intersection graph, which is planar by lemma 6 of \cite{Pyrga:2008:NEP:1377676.1377708}. We can then map the graph to a set of tangent circles using Thurston's coin-graph theorem above. The circles have no intersections with each other but by increasing their radius by a small $\epsilon$, each pair of squares with $d=2$ intersection has a corresponding pair of disks.
+If no three squares have a common intersection or there are no points in regions of depth greater than 2 (\textit{i.e.} we do not care about points in deeper regions), we can map squares to a 2-intersection graph, which is planar by lemma 6 of \cite{Pyrga:2008:NEP:1377676.1377708}. We can then map the graph to a set of tangent circles using Thurston's coin-graph theorem stated above. The circles have no intersections with each other but by increasing their radius by a small $\epsilon$ while maintaining their centers, each pair of squares with $d=2$ intersection has a corresponding pair of disks.
 
 
 
@@ -336,7 +352,7 @@ This follows from the previous proof. Since the single $depth=2$ L-shape and the
 
 \begin{figure}[ht]
 \centering
-\subfloat[The $depth=3$ region and its 8 surrounding regions \label{fig:sub:depth-center}]{\includegraphics[width=0.45\textwidth]{depth-map-center}}
+\subfloat[The $d=3$ region and its 8 surrounding regions \label{fig:sub:depth-center}]{\includegraphics[width=0.45\textwidth]{depth-map-center}}
 \subfloat[\textit{WLOG}, possible locations of upper-left corner of fourth rectangle \label{fig:sub:depth-starting-location} ]{\includegraphics[width=0.45\textwidth]{depth-map-all}} \\
 \subfloat[The only three cases with all $d=1,2,3$ regions \label{fig:sub:depth-3-cases}]{\includegraphics[width=0.7\textwidth]{depth-map-3-cases}} 
 \caption{Case analysis of possible configurations of three rectangles}
@@ -523,7 +539,7 @@ Number of constraints: n*m
 If using gradient descent: $L = \sigma(d(a,b)-1)$ if section a in circle b else $\sigma(1-d(a,b))$ using sigmoid function
 
 
-\subsection{Justification}
+\paragraph{Justification}
 If there exists a point in a subsection of a circle, then the distance from the point to the center of the circle is less than 1 (unit radius). If the same subsection is not a subsection of another circle, the point must be farther away from the center of the second circle.
 
 \subsection{Relation to VC Dimension}
@@ -550,53 +566,97 @@ Every 3-connected planar graph can be realized as a convex polyhedron.
 
 Take any planar graph of size $n \geq 4$ and triangulate it so that it becomes the maximal planar graph. The maximal planar graph is at least 3-connected so Steinitz's Theorem is applied to it, lifting the graph to a 3D polyhedron. Note that the original vertices, edges, and triangular faces are conserved in the polyhedron. Take the half-space defined by a point and the normal vector on each object. Translate it in the opposite direction of the vector by a small distance $\epsilon$. The resulting half-space separates the given object from the rest of the graph.
 
-\subsection{Lifting paths of \texorpdfstring{$length=3$}{length=3}}
+\subsection{Lifting paths of length=3 in a binary tree}
 In order to make a more general statement about triangular faces, we consider any set of $length=3$ paths, \textit{i.e.} triples, that is in a planar graph. It is not clear how to generalize lifting triangular faces into $length=3$ paths using the polyhedron transformation described above. For simplicity at this stage, we disregard sets in which a pair of triples cross each other through the middle vertex.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{images/binary-tree-with-circles}
+\caption{Any $P_3$ in a binary tree $G$ is separable from $G\backslash P_3$ by a circle}
+\end{figure}
 
 \paragraph{Redrawing of graph} One graph that never has any crossing triples is a binary tree. A binary tree can be redrawn according to the following recursive construction in order to lift any number of paths in the graph.
 \begin{enumerate}
-\item Start from the root node and base length 1 as distance to its children.
-\item If the current node has a parent, take a fraction $r\leq 1$, say half, of the distance between the parent and the current node as its distance to its children nodes.
-\item Depending on the value of $r$, take $\theta$, say $\frac{\pi}{2}$, as the angle between the edges to the current node's two children.
+\item Start from the root node and base length $b$ as distance to its children.
+\item If the current node has a parent, take a scaling factor $c\leq 1$, say half, of the distance between the parent and the current node as its distance to its children nodes.
+\item Depending on the value of $c$, take $\theta$, say $\frac{\pi}{2}$, as the angle between the edges to the current node's two children.
 \end{enumerate}
 
 \paragraph{Lifting} The following is the lifting step.
 \begin{enumerate}
-\item There exists a unique circle $C_i$ passing through the parent and two children of each node $v_i$.
+\item There exists a unique circle $C_i$ passing through the parent and two children of each node $P_i$.
 \item Every triple as well as an extra node is inside the circle defined by the middle node.
 \item To exclude the extra node, define a new disk by maintaining the two leaves of the triple on the boundary of the disk but translating the center towards the midpoint of the two leaf nodes by a small $\epsilon$.
 \item Repeat this for all given triples.
 \item Using the mapping described in section~\ref{section:disk-lifting}, each triple but no other node is lifted to a half-space.
 \end{enumerate}
 
+We require the distance to decrease exponentially by a factor $c$ so that we can generalize binary trees of arbitrary heights. The angle $\theta$ needs to be small in order to prevent the two descendant branches from curving back into the circle in which the parent node exists as well as into each other.
+
 \begin{figure}[ht]
 \centering
-
-\includegraphics[width=0.5\textwidth]{images/binary-tree-with-circles}
-\caption{Any $P_3$ in a binary tree $G$ is separable from $G\backslash P_3$ by a circle}
+\includegraphics[width=0.7\textwidth]{images/proof-binary-tree.png}
+\caption{Descendant subtrees will never be in cross the circle defined by the parent and two children of a node. (Theorem~\ref{thm:binary-tree-parent}) \label{fig:proof-binary-tree}}
 \end{figure}
 
-
-We require the distance to decrease exponentially so that we can generalize binary trees of arbitrary heights. The angle $\theta$ needs to be small in order to prevent the two descendant branches from curving back into the circle in which the parent node exists as well as into each other.
-
 \begin{theorem}
-In a drawing of a binary tree with $r=\frac{1}{2}$, $\theta=\frac{\pi}{2}$, the subtrees with the two children nodes of node $v_i$ as roots do not intersect the unique circle $C_i$ passing through the parent and two children of $v_i$.
+In a drawing of a binary tree with $c=\frac{1}{2}$, $\theta=\frac{\pi}{2}$, the subtrees with the two children nodes of node $v_i$ as roots do not intersect the unique circle passing through the parent and two children of $P_0$.
+\label{thm:binary-tree-parent}
 \end{theorem}
 \begin{proof}
+We want to show that eventually the subtree diverges away from the circle so much that it is impossible to come back. Let $b$ be the length of $\overline{P_{-1}P_0}$. Find the radius and distance from the center of the circle to $\overline{P_{2}P_3}$ with some tedious trigonometry.
+\begin{align*}
+r &=\frac{5+2\sqrt{2}}{8+2\sqrt{2}} \cdot b \\
+d(O,\overline{P_{2}P_3}) &= \frac{(r-b)}{\sqrt{2}}+\frac{b}{2}+\frac{b}{4\sqrt{2}}
+\end{align*}
+$P_3$ is on the line segment $\overline{P_{2}P_3}$, so $d(O,P_3)$ is greater than $d(O,\overline{P_{2}P_3})$. the sum of the length of all line segments from $P_3$ is given by
 
+\begin{align*}
+\sum_{n=3}^{\infty} d(P_n,P_{n+1}) = \frac{b}{8} < d(O,\overline{P_{2}P_3}) - r < d(O,P_3) - r
+\end{align*}
+Thus the subtree will never be able to intersect the circle.
 \end{proof}
 
 \begin{theorem}
-In a drawing of a binary tree with $r=\frac{1}{2}$, $\theta=\frac{\pi}{2}$, the subtrees with the two children nodes of node $v_i$ as roots do not intersect each other.
+In a drawing of a binary tree rooted at $P_0$ with $c=\frac{1}{2}$, $\theta=\frac{\pi}{2}$, the subtrees with the roots $P_1,Q_1$ (children of node $P_0$) do not intersect each other.
+\label{}
 \end{theorem}
 \begin{proof}
-
+\begin{align*}
+\sum_{n=2}^{\infty} d(P_n,P_{n+1}) + \sum_{n=2}^{\infty} d(Q_n,Q_{n+1}) =\frac{b}{2} < d(P_2,Q_2) = \frac{b}{\sqrt{2}}
+\end{align*}
+The roots of the subtrees are initially separated by $\frac{b}{\sqrt{2}}$, and the closer line segments $\overline{P_1P_2}$ and $\overline{Q_1Q_2}$ are parallel to each other. The distance cannot be reconciled by the descendants of $P_2$ and $Q_2$ whose combined length of descendant paths is $\frac{b}{2}$.
 \end{proof}
 
-generalize for k-ary tree
+\subsection{Lifting paths of length=3 in a \texorpdfstring{$k$}{k}-ary tree}
+We can generalize the construction of binary tree for any $k$-ary trees. However, general $k$-ary trees require slight rearrangement of vertices and edges after the initial construction. 
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{images/proof-k-ary-tree.png}
+\caption{Redrawing of $k$-ary tree}
+\label{fig:proof-k-ary-tree}
+\end{figure}
+\paragraph{Redrawing of graph} We take a similar approach as the construction of a binary tree, but choose a much smaller scaling factor $c$ of edges and angle $\theta$ between sibling vertices. 
+\begin{enumerate}
+\item Start from the fake root node $P_{-1}$ that has the root node as its child. 
+\item Choose base radius $r$ and choose base length $b$ to the root such that $b>r$ and the ratio $\frac{r}{b}$ is some constant, say $m$. 
+\item For each node, take the length of the edge to its parent as $b$. Update $r=mb$ and place the center $O$ of the circle at length $r$ of the edge from the node's parent. Note that $O$ is closer to the parent node than the current node.
+\item Place the children nodes on the circle defined by radius $r$ and center $O$ separated by angle $\theta$, say $\frac{\pi}{12}$, between the edges to the current node's children. Note that the edge between the current node and its children have varying lengths.
+\item Recursively execute steps 3 and 4 for all nodes.
+\end{enumerate}
 
-proof by construction of star
-corollary: star
+\paragraph{Lifting} The following is the lifting step. It involve re-configuring the position of some vertices and edges. We assume that none of the given triples cross each other.
+\begin{enumerate}
+\item There exists a unique circle $C_i$ with center $O$ passing through the parent $Q_0$ and children $Q_1, \dots , Q_n$ of a node $P$.
+\item Paths of form $Q_iPQ_{i+1}$ and $Q_nPQ_0$  can be separated using the circle defined by: two points $Q_i, Q_{i+1}$ and center $O'$ constructed by translating $O$ towards the midpoint of $Q_i$ and $Q_{i+1}$ by a small $\epsilon$.
+\item Nested paths of form $Q_iPQ_j$ can be separated by first sorting them from outside to inside, then for each path constructing a new circle as done in step 2, then translating all nested vertices on to that new circle. This is shown by example in paths $Q_0PQ_2$, $Q_3PQ_6$, and $Q_4PQ_6$ of figure~\ref{fig:proof-k-ary-tree}.
+\end{enumerate}
+
+Note that $k$-ary trees can generalize any tree graph, including binary tree and star graph by taking $k=\displaystyle \max_{P_i} degree(P_i)$. This approach would be more complete with a proof of consistency and proof that all descendant subtrees do not cross each other nor  cross the circle of an ancestor vertex.
+
+The construction of these trees is interesting because a similar approach \cite{Chamberlain:2017arXiv170510359C} \cite{Nickel:NIPS2017_7213} is used to embed graphs in hyperbolic space in order to maintain graph distances. 
+
+\section{Conclusion \& Future Work}
 
 \newpage
 \section{Appendix: Definitions}

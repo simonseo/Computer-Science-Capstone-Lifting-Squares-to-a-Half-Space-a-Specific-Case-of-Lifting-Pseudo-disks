@@ -1,0 +1,53 @@
+% https://www.geogebra.org/geometry/semrq9rr
+% \documentclass[10pt]{article}
+% \usepackage{pgf,tikz,pgfplots}
+% \pgfplotsset{compat=1.15}
+% \usepackage{mathrsfs}
+% \usetikzlibrary{arrows}
+% \pagestyle{empty}
+% \begin{document}
+\definecolor{ffqqqq}{rgb}{1,0,0}
+\definecolor{wrwrwr}{rgb}{0.3803921568627451,0.3803921568627451,0.3803921568627451}
+\definecolor{rvwvcq}{rgb}{0.08235294117647059,0.396078431372549,0.7529411764705882}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-3.0297943361960096,1.7533779924660955) rectangle (1.4327944870647094,5.011067833470643);
+\draw[line width=1.6pt,fill=black,fill opacity=0.10000000149011612] (0.3105321483374502,4.418726335891836) -- (0.3601164685959026,4.369142015633383) -- (0.409700788854355,4.418726335891836) -- (0.36011646859590263,4.468310656150288) -- cycle; 
+\draw [line width=2pt,color=rvwvcq] (-5,2)-- (-1,2);
+\draw [line width=2pt] (-2.108194187554388,2) circle (2.891805812445612cm);
+\draw [line width=2pt,color=rvwvcq] (0.4142135623730955,4.414213562373094)-- (0.4142135623730951,3.414213562373095);
+\draw [line width=2pt,color=rvwvcq] (0.060660171779821914,4.767766952966368)-- (0.4142135623730955,4.414213562373094);
+\draw [line width=2pt,color=rvwvcq] (-0.18933982822017775,4.767766952966368)-- (0.060660171779821914,4.767766952966368);
+\draw [line width=2pt,color=rvwvcq] (-0.18933982822017775,4.767766952966368)-- (-0.27772817586849546,4.679378605318049);
+\draw [line width=2pt,color=rvwvcq] (-0.27772817586849435,4.616878605318048)-- (-0.27772817586849546,4.679378605318049);
+\draw [line width=2pt,color=rvwvcq] (-0.2556310889564143,4.594781518405969)-- (-0.27772817586849435,4.616878605318048);
+\draw [line width=2pt,dash pattern=on 1pt off 1pt,color=wrwrwr] (-2.108194187554388,2)-- (0.4142135623730951,3.414213562373095);
+\draw [line width=2pt,color=wrwrwr] (0.36011646859590224,4.468310656150287)-- (-2.108194187554388,2);
+\draw [line width=2pt,color=rvwvcq] (-1,2)-- (0.4142135623730951,3.414213562373095);
+\draw [line width=2pt,color=rvwvcq] (-1,2)-- (0.4142135623730951,0.5857864376269049);
+\draw [line width=2pt,color=ffqqqq] (-2.108194187554388,2)-- (-1,2);
+\begin{scriptsize}
+\draw [fill=rvwvcq] (-5,2) circle (2.5pt);
+\draw[color=rvwvcq] (-2.6876625264126885,2.737626749603695) node {$A$};
+\draw [fill=rvwvcq] (-1,2) circle (2.5pt);
+\draw[color=rvwvcq] (-0.9472528853410079,2.1227811783943125) node {$P_0$};
+\draw [fill=wrwrwr] (0.4142135623730951,0.5857864376269049) circle (2pt);
+\draw[color=wrwrwr] (-0.21836337754175722,1.8401505529190323) node {$E$};
+\draw [fill=wrwrwr] (0.4142135623730951,3.414213562373095) circle (2pt);
+\draw[color=wrwrwr] (0.47085867405073156,3.5260174417189503) node {$P_1$};
+\draw [fill=wrwrwr] (0.4142135623730955,4.414213562373094) circle (2pt);
+\draw[color=wrwrwr] (0.47085867405073156,4.5276207109471365) node {$P_2$};
+\draw[color=rvwvcq] (0.6741543871103866,3.972276324048341) node {$\frac{b}{4}$};
+\draw [fill=wrwrwr] (0.060660171779821914,4.767766952966368) circle (2pt);
+\draw[color=wrwrwr] (0.11385156818987408,4.8796693847847665) node {$P_3$};
+\draw [fill=wrwrwr] (-2.108194187554388,2) circle (2pt);
+\draw[color=wrwrwr] (-2.067858523182033,2.0979890182649026) node {$O$};
+\draw[color=wrwrwr] (-0.7389987402555077,2.8020863659401622) node {$r$};
+\draw[color=wrwrwr] (-0.520827731118317,3.649978242366003) node {$\text{distance to } \overline{P_2P_3}$};
+\draw[color=rvwvcq] (-0.020026096507947483,2.7128345894742845) node {$\frac{b}{2}$};
+\draw[color=ffqqqq] (-1.4480545199513777,2.073196858135492) node {$r-b$};
+\draw [fill=wrwrwr] (0.41421356237309526,3.9142135623730945) circle (2pt);
+\draw [fill=wrwrwr] (-0.2928932188134524,2.7071067811865475) circle (2pt);
+\draw [fill=wrwrwr] (-1.554097093777194,2) circle (2pt);
+\end{scriptsize}
+\end{tikzpicture}
+% \end{document}
